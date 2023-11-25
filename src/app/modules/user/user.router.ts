@@ -12,7 +12,6 @@ import {
 
 const router = Router();
 
-// POST endpoint for creating a new user
 router.post('/', createUsers);
 
 // GET endpoint for getting all users

@@ -100,7 +100,6 @@ userSchema.post('save', async function (doc, next) {
 });
 
 userSchema.post('find', async function (docs: IUser[], next) {
-  //   Making orders field empty
   docs.forEach((doc) => {
     doc.orders = undefined;
   });
@@ -109,13 +108,11 @@ userSchema.post('find', async function (docs: IUser[], next) {
 });
 
 userSchema.post('findOneAndUpdate', async function (doc: IUser, next) {
-  //   Making orders field undefined
   doc.orders = undefined;
 
   next();
 });
 
-// Custom static method for the user schema
 userSchema.statics.isUserExist = async function (
   userId: number,
 ): Promise<IUser | null> {
@@ -123,5 +120,4 @@ userSchema.statics.isUserExist = async function (
   return user;
 };
 
-// Create and export the mongoose model
 export const User = model<IUser, UserModel>('User', userSchema);
