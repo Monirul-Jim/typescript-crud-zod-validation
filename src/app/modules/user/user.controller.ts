@@ -92,24 +92,15 @@ export const updateAUser = async (
 ): Promise<void> => {
   try {
     const { userId } = req.params;
-
-    // Get the user data from the request body
     const userData = req.body;
-
-    // Validate the incoming user data
     const validatedUser = validateUser(userData);
-
-    // Update the user using the service function
     const updatedUser = await updateUser(userId, validatedUser);
-
-    // Send the response
     res.status(200).json({
       success: true,
       message: 'User updated successfully!',
       data: updatedUser,
     });
   } catch (error: any) {
-    // Handle errors, send an appropriate response
     res.status(400).json({
       success: false,
       message: 'Failed to fetch user!',
@@ -121,26 +112,19 @@ export const updateAUser = async (
   }
 };
 
-// Controller function for deleting a user by userId
 export const deleteSingleUser = async (
   req: Request,
   res: Response,
 ): Promise<void> => {
   try {
-    // Get the user id from the request params
     const { userId } = req.params;
-
-    // Get the user using the service function
     await deleteUser(userId);
-
-    // Send the response
     res.status(200).json({
       success: true,
       message: 'User deleted successfully!',
       data: null,
     });
   } catch (error: any) {
-    // Handle errors, send an appropriate response
     res.status(400).json({
       success: false,
       message: 'Failed to fetch user!',
@@ -151,27 +135,17 @@ export const deleteSingleUser = async (
     });
   }
 };
-
-// Controller function for adding an order to a user
 export const addOrders = async (req: Request, res: Response): Promise<void> => {
   try {
-    // Get the user id from the request params
     const { userId } = req.params;
-
-    // Get the order data from the request body
     const orderData = req.body;
-
-    // Add the order to the user using the service function
     await addOrder(userId, orderData);
-
-    // Send the response
     res.status(200).json({
       success: true,
       message: 'Order added successfully!',
       data: null,
     });
   } catch (error: any) {
-    // Handle errors, send an appropriate response
     res.status(400).json({
       success: false,
       message: 'Failed to add order!',
@@ -182,20 +156,13 @@ export const addOrders = async (req: Request, res: Response): Promise<void> => {
     });
   }
 };
-
-// Controller function for getting orders of a user
 export const getOrdersOfUsers = async (
   req: Request,
   res: Response,
 ): Promise<void> => {
   try {
-    // Get the user id from the request params
     const { userId } = req.params;
-
-    // Get the orders of the user using the service function
     const orders = await getOrders(userId);
-
-    // Send the response
     res.status(200).json({
       success: true,
       message: 'Orders fetched successfully!',
