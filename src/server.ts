@@ -5,7 +5,6 @@ import config from './app/config';
 async function main() {
   try {
     await mongoose.connect(config.database_url as string);
-
     app.listen(config.port, () => {
       console.log(`Info-store Server is running on port ${config.port}.`);
     });
